@@ -41,28 +41,6 @@ function ImageGallery() {
   };
 
 
-  // For handling drag-and-drop on mobile devices
-  let dragImage = null;
-
-  const handleTouchStart = (e, image) => {
-    dragImage = image;
-    e.target.style.opacity = '0.5';
-  };
-
-  const handleTouchMove = (e) => {
-    if (dragImage) {
-      e.preventDefault();
-    }
-  };
-
-  const handleTouchEnd = () => {
-    if (dragImage) {
-      dragImage = null;
-      setImages([...images]);
-    }
-  };
-
-
   //dragging image
   const handleDragStart = (e, draggedImage) => {
     e.dataTransfer.setData('text/plain', JSON.stringify(draggedImage));
@@ -121,9 +99,6 @@ function ImageGallery() {
                 className="col-md-4"
                 onDragOver={(e) => handleDragOver(e)}
                 onDrop={(e) => handleDrop(e, image)}
-                onTouchStart={(e) => handleTouchStart(e, image)}
-                onTouchEnd={() => handleTouchEnd()}
-                onTouchMove={(e) => handleTouchMove(e)}
               >
                 <div
                   className={`card ${selectedImages.includes(image.src) ? 'selected' : ''}`}
@@ -153,9 +128,6 @@ function ImageGallery() {
                 className="col-md-3"
                 onDragOver={(e) => handleDragOver(e)}
                 onDrop={(e) => handleDrop(e, image)}
-                onTouchStart={(e) => handleTouchStart(e, image)}
-                onTouchEnd={() => handleTouchEnd()}
-                onTouchMove={(e) => handleTouchMove(e)}
               >
                 <div
                   className={`card ${selectedImages.includes(image.src) ? 'selected' : ''}`}
