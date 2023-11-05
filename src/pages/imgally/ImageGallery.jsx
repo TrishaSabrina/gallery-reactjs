@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './img.css';  //import css file  
 //import image path           
 import yellow from '../../assets/yellow.png';
-import cars from '../../assets/cars.png';
 import coolcar from '../../assets/coolcar.png';
 import watch from '../../assets/watch.png';
 import key from '../../assets/key.png';
@@ -23,7 +22,7 @@ function ImageGallery() {
     
   ]);
 
-
+    
   //for selecting image
   const toggleSelected = (image) => {
     if (selectedImages.includes(image.src)) {
@@ -39,6 +38,28 @@ function ImageGallery() {
     const updatedImages = images.filter((image) => !selectedImages.includes(image.src));
     setImages(updatedImages);
     setSelectedImages([]);
+  };
+
+
+  // For handling drag-and-drop on mobile devices
+  let dragImage = null;
+
+  const handleTouchStart = (e, image) => {
+    dragImage = image;
+    e.target.style.opacity = '0.5';
+  };
+
+  const handleTouchMove = (e) => {
+    if (dragImage) {
+      e.preventDefault();
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (dragImage) {
+      dragImage = null;
+      setImages([...images]);
+    }
   };
 
 
@@ -100,6 +121,9 @@ function ImageGallery() {
                 className="col-md-4"
                 onDragOver={(e) => handleDragOver(e)}
                 onDrop={(e) => handleDrop(e, image)}
+                onTouchStart={(e) => handleTouchStart(e, image)}
+                onTouchEnd={() => handleTouchEnd()}
+                onTouchMove={(e) => handleTouchMove(e)}
               >
                 <div
                   className={`card ${selectedImages.includes(image.src) ? 'selected' : ''}`}
@@ -129,6 +153,9 @@ function ImageGallery() {
                 className="col-md-3"
                 onDragOver={(e) => handleDragOver(e)}
                 onDrop={(e) => handleDrop(e, image)}
+                onTouchStart={(e) => handleTouchStart(e, image)}
+                onTouchEnd={() => handleTouchEnd()}
+                onTouchMove={(e) => handleTouchMove(e)}
               >
                 <div
                   className={`card ${selectedImages.includes(image.src) ? 'selected' : ''}`}
