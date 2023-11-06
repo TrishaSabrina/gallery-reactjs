@@ -7,6 +7,10 @@ import ImageGallery from './pages/imgally/ImageGallery';
 function App() {
   return (
     <div className="App">
+      <div className="image-gallery">
+
+
+
  <BrowserRouter>
  <Routes>
  <Route path="/" element={< ImageGallery/>} />
@@ -14,6 +18,7 @@ function App() {
  </Routes>
  
  </BrowserRouter>
+ </div>
     </div>
   );
 }
