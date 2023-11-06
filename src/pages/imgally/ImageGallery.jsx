@@ -101,7 +101,7 @@ function ImageGallery() {
                 onDrop={(e) => handleDrop(e, image)}
               >
                 <div
-                  className={`card ${selectedImages.includes(image.src) ? 'selected' : ''}`}
+                  className={`card ${selectedImages.includes(image.src) ? 'selected' : ''} zoom-in`}
                   draggable
                   onDragStart={(e) => handleDragStart(e, image)}
                 >
@@ -114,7 +114,7 @@ function ImageGallery() {
                     <img
                       src={image.src}
                       alt={image.alt}
-                      className={`card-img-top ${index === 0 ? 'larger' : ''}`}
+                      className={`card-img-top ${index === 0 ? 'larger' : ''} `}
                     />
                   </div>
                 </div>
@@ -130,7 +130,7 @@ function ImageGallery() {
                 onDrop={(e) => handleDrop(e, image)}
               >
                 <div
-                  className={`card ${selectedImages.includes(image.src) ? 'selected' : ''}`}
+                  className={`card ${selectedImages.includes(image.src) ? 'selected' : ''} zoom-in`}
                   draggable
                   onDragStart={(e) => handleDragStart(e, image)}
                 >
